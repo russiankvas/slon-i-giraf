@@ -1,6 +1,6 @@
 ﻿function main() {
     // problem_1(5, 6, 9, 3, 13);
-    problem_2(250, 247, 2);
+    problem_2(4, 5, 6);
 }
 
 function problem_1(a, b, c, d, e) {
