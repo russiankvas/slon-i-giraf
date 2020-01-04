@@ -1,4 +1,4 @@
-﻿function main() {
+function main() {
     // problem_1(5, 6, 9, 3, 13);
     //problem_2(1, 2, 2);
 }
@@ -49,32 +49,30 @@ function problem_2(a, b, c) {
    console.log('треугольник существует')   
    }
 
+let a, b, m;
 
-let a = 1;
-let b = 100;
-
-function answer (less) {
-   let c = Math.floor((a + b)/ 2);
-
-   if (less){
-       b = c ;
-   } else {
-       a = c ;
-   }
-
-   if ((b - a) === 1){
-      alert('ваше число равно ' + a); 
+function set_abm(){
    a = 1;
    b = 100;
-   document.getElementById('number').innerHTML = 50;
-   alert('можете загадать другое число ')
-      return;
-   }
-
-   c = Math.floor((a + b)/ 2);
-
-   document.getElementById('number').innerHTML = c
+   m = 50;
 }
 
+set_abm();
 
+function answer (less) {
 
+   if (less){
+       b = (m - 1) ;
+   } else {
+       a = m ;
+   }
+
+   if (b === a){
+      alert('ваше число равно ' + a + '\n' + 'можете загадать другое число!'); 
+     set_abm();
+   }
+   else {
+   m = Math.ceil((a + b)/ 2);
+  }
+   document.getElementById('number').innerHTML = m
+}
