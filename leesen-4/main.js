@@ -1,10 +1,13 @@
-let is_x = true;
- let end_game = false;
+is_x = true;
+let end_game = false;
+let win_x = 0;
+let win_o = 0;
+
 let arr = [['','',''],['','',''],['','','']];
 
 
 function step (k) {
-  if (end_game) { return; }
+  if (end_game) { return };
 
   const char_x = '✕';
   const char_o = '◯';
@@ -19,8 +22,8 @@ function step (k) {
 
   const symb = (is_x ? char_x : char_o);
 
-  arr[i][j] = symb
-  document.getElementById(k).innerHTML = symb
+  arr[i][j] = symb;
+  document.getElementById(k).innerHTML = symb;
 
   let flag
 
@@ -118,6 +121,14 @@ function set_win(type, k) {
             }
         } break;
     }
+    if (is_x) {
+      ++win_x
+   document.getElementById('win_x').innerHTML = win_x
+} else {
+      ++win_o
+   document.getElementById('win_o').innerHTML = win_o
+}
+   
 
     let str = 'Победили ' + (is_x ? 'крестики' : 'нолики') + '!';
      setTimeout(() => alert (str), 100);
@@ -150,4 +161,5 @@ function start_game() {
     
     document.getElementById("btn").setAttribute("disabled", true);
     end_game = false;
+    is_x = !is_x;
 }	
