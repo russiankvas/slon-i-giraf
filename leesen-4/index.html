@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 
 
@@ -9,18 +9,31 @@
     <script type="text/javascript" src="main.js"></script>
     
     <style>
-        div {
+        .container {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
-        
+
+        .box{
+	    width: 300px;
+            display: flex;
+            justify-content: space-between;
+	    font-family: sans-serif;
+        }
+	.title {
+	  width: 500px;
+	  margin-top: 50px;
+	  font-family: sans-serif;
+	  font-family: 50px;
+}
         table {
             border-collapse: collapse;
             border-spacing: 0;
             margin-bottom: 20px;
+	    margin-top: 20px;
         }
         
         td {
@@ -40,11 +53,21 @@
             background-color: #ffa500;
         }
     </style>
-    
 </head>
 
 <body>
-    <div>
+    <div class="container">
+     
+        <div class="box"> 
+	  <div>
+	    <span>Крестики:</span>
+	    <span id="win_x">0</span>
+	  </div>
+	  <div>
+	    <span>Нолики:</span>
+	    <span id="win_o">0</span>
+	  </div>
+        </div>
         <table>
             <tr>
                 <td id=0 onclick="step(0)"></td>
@@ -63,6 +86,11 @@
             </tr>
         </table>
         <button id="btn" onclick="start_game()" disabled>Начать заново</button>
+ <div class="title">
+	Первую партию начиеают крестики "✕" ,а нолики "◯" ходят вторыми
+В следующих партиях первым ходит тот игрок, который в преведющей партии сделал ПРЕДпоследний ход.
+	  
+      </div>
     </div>
 </body>
 
