@@ -1,4 +1,4 @@
-﻿let is_x = true;
+let is_x = true;
  let end_game = false;
 let arr = [['','',''],['','',''],['','','']];
 
@@ -17,87 +17,68 @@ function step (k) {
     return;
   }
 
-  arr[i][j] = (is_x ? char_x : char_o);
-  document.getElementById(k).innerHTML = arr[i][j]
- 
+  const symb = (is_x ? char_x : char_o);
+
+  arr[i][j] = symb
+  document.getElementById(k).innerHTML = symb
+
+  let flag
+
   //Проверка горизанталей
   for (let i = 0; i < 3; ++i) {
-    let flag_o = true;
-    let flag_x = true;
+    flag = true
     
     for (let j = 0; j < 3; ++j) {
-      flag_x &= (arr[i][j] === char_o);
-      flag_o &= (arr[i][j] === char_x);
+      flag &= (arr[i][j] === symb);
     };
 
-    if (flag_o) {
+    if (flag) {
       set_win('HOR', i);
       return;
     };
 
-    if (flag_x) { 
-      set_win('HOR', i);
-      return;
-    };
   };
 
     //Проверка вертикалей 
   for (let j = 0; j < 3; ++j) {
-    let flag_o = true;
-    let flag_x = true;
+   flag = true
 
     for (let i = 0; i < 3; ++i) {
-      flag_x &= (arr[i][j] === char_o);
-      flag_o &= (arr[i][j] === char_x);
+      flag &= (arr[i][j] === symb);
     };
 
-    if (flag_o) {
+    if (flag) {
       set_win('VER', j);
       return;
     };
-
-    if (flag_x) { 
-      set_win('VER', j);
-      return;
-    }; 
+  
   };
 
     //проверка глав диагонали 
-    let flag_o = true;
-    let flag_x = true;
+    flag = true
     
     for (let i = 0; i < 3; ++i) {
-      flag_x &= (arr[i][i] === char_o);
-      flag_o &= (arr[i][i] === char_x);
+      flag &= (arr[i][i] === symb);
     };
 
-    if (flag_o) {
+    if (flag) {
       set_win('MDG');
       return;
     };
+   
+    flag = true;
 
-    if (flag_x) { 
-      set_win('MDG');
-      return;
-    };
-    flag_o = true;
-    flag_x = true;
     
     for (let i = 0; i < 3; ++i) {
-      flag_x &= (arr[2-i][i] === char_o);
-      flag_o &= (arr[2-i][i] === char_x);
+      flag &= (arr[2-i][i] === symb);
     };
 
-    if (flag_o) {
+    if (flag) {
       set_win('SDG');
       return;
     };
 
-    if (flag_x) { 
-      set_win('SDG');
-      return;
-    };
-   let flag = true
+   flag = true
    for (let i = 0; i < 3; ++i) {
      for (let j = 0; j < 3; ++j){ 
        flag &= ( arr [i] [j] !== '');
@@ -137,7 +118,10 @@ function set_win(type, k) {
             }
         } break;
     }
-    
+
+    let str = 'Победили ' + (is_x ? 'крестики' : 'нолики') + '!';
+     setTimeout(() => alert (str), 100);
+
     document.getElementById("btn").removeAttribute("disabled");
     end_game = true;
 }
@@ -146,6 +130,8 @@ function set_draw() {
     for (let k = 0; k < 9; ++k) {
         document.getElementById(k).classList.add("draw");
     }
+
+    setTimeout(() => alert ('Ничья =( '), 100);
     
     document.getElementById("btn").removeAttribute("disabled");
     end_game = true;
