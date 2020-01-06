@@ -1,23 +1,16 @@
-﻿function main(){
-  let tree = {
-    data: 'A',
-    L: {
-      data: 'B',
-     L: 0,
-     R: 0
-    },
-      R: {
-      data: 'C',
-      L: 0,
-      R: 0
-    },
+function main() {
+  let node = create_node('Привет');
+  let tree = node;
+  
+ for (let i = 0; i < 1024; ++i){
+    node = create_node('Прив');
+    add_node(tree, node);
   }
-  count(tree)
-  console.log(count(tree))
-  console.log(tree.__proto__)
+  console.log(height(tree))
+  console.log(tree)
 }
 
-//function count(tree) {
+function count(tree) {
   if (tree === 0) {
     return 0;
   } else {
@@ -51,13 +44,18 @@ function add_node(tree, node) {
   }
 }
 
-function create_node(data)
-  {return
-    {data,
-    count: 0
-    L: 0
+function create_node(data) {
+  return {
+    data,
+    count: 0,
+    L: 0,
     R: 0 
   }
-}
+}  
 
-  
+function height(tree) {
+  if (tree === 0) {
+    return 0;
+  }
+  return (1 + Math.max(height(tree.L),height(tree.R)));
+}
